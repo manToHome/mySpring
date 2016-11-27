@@ -1,4 +1,18 @@
+声明：这里的大部分解决问题的方法都是从网上搜的，所以很多来源并不清楚，无法声明来源，仅供参考
 注意：
+此项目遇到的问题：
+1.直接使用mvn archetype:generate，有时后会卡住，
+解决方式：
+	1、不使用interactive mode方式，直接指定DarchetypeArtifactId
+	2、仍使用interactive mode方式，但增加参数 -DarchetypeCatalog=internal  ，指定仅使用内置元数据。
+原因：archetypeCatalog表示插件使用的archetype元数据，默认值为remote,local，即中央仓库archetype元数据（http://repo1.maven.org/maven2/archetype-catalog.xml）加上插件内置元数据的和
+	由于中央仓库的archetype太多，导致这个列表太长
+	因此自己指定仅用内置元数据（20个左右）
+2.直接使用java自带的命令运行maven项目的主类好像有问题。
+解决方式：
+	使用maven命令运行，具体参考run.bat文件即可
+原因：使用java自带的命令需要指明外部以来的classpath所以会报很多ClassNotFoundException，虽然你也在pom.xml中声明了
+
 此项目是测试Aop的before增强，并尝试将其转为maven项目执行
 运行步骤：
 1.直接运行run.bat文件即可
